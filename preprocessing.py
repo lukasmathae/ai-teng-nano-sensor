@@ -47,8 +47,18 @@ def load_data(base_dir):
 def sliding_window(combined_df):
 
     # Parameters
-    window_size = 100  # adjust based on your data rate and action duration
-    stride = 50  # 50% overlap
+    ''' - 0.72 with CNN, gradient boosted trees 0.77 random tree 0.78
+    window_size = 500  # adjust based on your data rate and action duration
+    stride = 30  # 50% overlap
+    '''
+    # 0.71, 0.79, 0.84
+    #window_size = 500
+    #stride = 20
+    # 0.91-0.92 0.86, 0.84
+    #window_size = 550
+    #stride = 12
+    window_size = 570
+    stride = 12
 
     X = []
     y = []
@@ -89,6 +99,47 @@ def split_data(X, y):
 
     print("Train:", X_train.shape, "Validation:", X_val.shape, "Test:", X_test.shape)
     return X_train, X_temp, y_train, y_temp, X_val, X_test, y_val, y_test
+
+
+def load_full_sequences(base_dir):
+    file_label_map = {
+        "First meta volt.xlsx": "meta",
+        "Heel volt.xlsx": "heel",
+        "Toe volt.xlsx": "toe",
+        "U First meta volt.xlsx": "meta",
+        "U Heel volt.xlsx": "heel",
+        "U Toe volt.xlsx": "toe"
+    }
+
+    X = []
+    y = []
+
+    for person in ["Person 1", "Person 2"]:
+        person_dir = os.path.join(base_dir, person)
+        person_label = person.lower().replace(" ", "")  # 'person1' or 'person2'
+
+        for filename in os.listdir(person_dir):
+            if filename.endswith(".xlsx"):
+                filepath = os.path.join(person_dir, filename)
+                df = pd.read_excel(filepath)
+
+                df = df.dropna(subset=["Time (s)"])
+
+                voltages = df["Voltage (V)"].values
+                label = f"{person_label}_{file_label_map.get(filename, filename.replace('.xlsx','').lower())}"
+
+                X.append(voltages)
+                y.append(label)
+
+    # Convert lists to arrays (object dtype due to variable length)
+    X = np.array(X, dtype=object)
+    y = np.array(y)
+
+    print(f"Loaded {len(X)} full sequences.")
+    print(f"Labels: {set(y)}")
+
+    return X, y
+
 
 def preprocessing_traditionalML(base_dir):
     print("=============================================================================")

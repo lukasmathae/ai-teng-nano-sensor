@@ -8,6 +8,8 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.ensemble import GradientBoostingClassifier
 from collections import Counter
+import joblib
+
 
 import preprocessing as prep
 
@@ -38,6 +40,8 @@ def train_and_evaluate_model(model, X_train, y_train, X_val, y_val, X_test, y_te
         print(classification_report(y_test_true, y_test_pred, target_names=labels))
 
         cm = confusion_matrix(y_test_true, y_test_pred)
+        model.save("models/cnn_model.keras")
+
     else:
         model.fit(X_train, y_train)
         y_val_pred = model.predict(X_val)
@@ -50,7 +54,9 @@ def train_and_evaluate_model(model, X_train, y_train, X_val, y_val, X_test, y_te
         print(classification_report(y_test, y_test_pred, target_names=labels))
 
         cm = confusion_matrix(y_test, y_test_pred, labels=labels)
+        joblib.dump(model, f"models/{model_name.replace(' ', '_').lower()}.pkl")
 
+    '''
     sns.heatmap(cm, annot=True, fmt="d", xticklabels=labels, yticklabels=labels, cmap="Blues")
     plt.title(f"{model_name} Confusion Matrix (Test Set)")
     plt.xlabel("Predicted")
@@ -59,7 +65,7 @@ def train_and_evaluate_model(model, X_train, y_train, X_val, y_val, X_test, y_te
     plt.yticks(rotation=45)
     plt.tight_layout()
     plt.show()
-
+    '''
 
 def build_cnn(input_shape, num_classes):
     model = Sequential([
@@ -95,9 +101,6 @@ def main():
             random_state=42
         )
     }
-
-    print(X_train)
-    print(X_train.shape)
 
     #for name, model in models.items():
     #    train_and_evaluate_model(model, X_train, y_train, X_val, y_val, X_test, y_test, labels, model_name=name)
