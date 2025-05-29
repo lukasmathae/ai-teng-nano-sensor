@@ -11,7 +11,10 @@ def load_data(base_dir):
     file_label_map = {
         "First meta volt.xlsx": "meta",
         "Heel volt.xlsx": "heel",
-        "Toe volt.xlsx": "toe"
+        "Toe volt.xlsx": "toe",
+        "U First meta volt.xlsx": "meta",
+        "U Heel volt.xlsx": "heel",
+        "U Toe volt.xlsx": "toe"
     }
 
     # Final list of dataframes
