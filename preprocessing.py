@@ -91,6 +91,8 @@ def preprocessing(base_dir):
     print("=============================================================================")
     print("Starting preprocessing on dir: ", base_dir)
     combined_df = load_data(base_dir)
+    print("Unique labels:", combined_df['Label'].unique())
+
     # Output shape and first few rows
     print("Combined shape:", combined_df.shape)
     print(combined_df.head())
