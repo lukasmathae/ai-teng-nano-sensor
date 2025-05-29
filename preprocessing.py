@@ -74,10 +74,13 @@ def sliding_window(combined_df):
     return X, y
 
 def flatten_data(X):
-
     scaler = StandardScaler()
-
     X_scaled = np.array([scaler.fit_transform(window.reshape(-1, 1)).flatten() for window in X])
+    return X_scaled
+
+def scale_and_reshape(X):
+    scaler = StandardScaler()
+    X_scaled = np.array([scaler.fit_transform(window.reshape(-1, 1)) for window in X])
     return X_scaled
 
 def split_data(X, y):
@@ -87,7 +90,7 @@ def split_data(X, y):
     print("Train:", X_train.shape, "Validation:", X_val.shape, "Test:", X_test.shape)
     return X_train, X_temp, y_train, y_temp, X_val, X_test, y_val, y_test
 
-def preprocessing(base_dir):
+def preprocessing_traditionalML(base_dir):
     print("=============================================================================")
     print("Starting preprocessing on dir: ", base_dir)
     combined_df = load_data(base_dir)
@@ -99,6 +102,22 @@ def preprocessing(base_dir):
 
     X,y = sliding_window(combined_df)
     X_scaled = flatten_data(X)
+    X_train, X_temp, y_train, y_temp, X_val, X_test, y_val, y_test = split_data(X_scaled, y)
+    print("=============================================================================")
+    return X_train, X_temp, y_train, y_temp, X_val, X_test, y_val, y_test, X, y
+
+def preprocessing_CNN(base_dir):
+    print("=============================================================================")
+    print("Starting preprocessing on dir: ", base_dir)
+    combined_df = load_data(base_dir)
+    print("Unique labels:", combined_df['Label'].unique())
+
+    # Output shape and first few rows
+    print("Combined shape:", combined_df.shape)
+    print(combined_df.head())
+
+    X,y = sliding_window(combined_df)
+    X_scaled = scale_and_reshape(X)
     X_train, X_temp, y_train, y_temp, X_val, X_test, y_val, y_test = split_data(X_scaled, y)
     print("=============================================================================")
     return X_train, X_temp, y_train, y_temp, X_val, X_test, y_val, y_test, X, y
