@@ -56,7 +56,7 @@ def train_and_evaluate_model(model, X_train, y_train, X_val, y_val, X_test, y_te
         cm = confusion_matrix(y_test, y_test_pred, labels=labels)
         joblib.dump(model, f"models/{model_name.replace(' ', '_').lower()}.pkl")
 
-    '''
+
     sns.heatmap(cm, annot=True, fmt="d", xticklabels=labels, yticklabels=labels, cmap="Blues")
     plt.title(f"{model_name} Confusion Matrix (Test Set)")
     plt.xlabel("Predicted")
@@ -64,8 +64,9 @@ def train_and_evaluate_model(model, X_train, y_train, X_val, y_val, X_test, y_te
     plt.xticks(rotation=45)
     plt.yticks(rotation=45)
     plt.tight_layout()
-    plt.show()
-    '''
+    #plt.show()
+    plt.savefig(f"plots/{model_name.replace(' ', '_').lower()}.png")
+    plt.close()
 
 def build_cnn(input_shape, num_classes):
     model = Sequential([
@@ -102,8 +103,8 @@ def main():
         )
     }
 
-    #for name, model in models.items():
-    #    train_and_evaluate_model(model, X_train, y_train, X_val, y_val, X_test, y_test, labels, model_name=name)
+    for name, model in models.items():
+        train_and_evaluate_model(model, X_train, y_train, X_val, y_val, X_test, y_test, labels, model_name=name)
 
     # CNN part
     X_train, X_temp, y_train, y_temp, X_val, X_test, y_val, y_test, X, y = prep.preprocessing_CNN(base_dir)
