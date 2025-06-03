@@ -1,0 +1,359 @@
+/home/lukas/ausland/course/digital-signal-processing/ai-teng-nano-sensor/.venv/bin/python /home/lukas/ausland/course/digital-signal-processing/ai-teng-nano-sensor/main.py 
+2025-06-01 07:50:54.316597: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-06-01 07:50:54.324690: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1748757054.332901   10287 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1748757054.335435   10287 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1748757054.342674   10287 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1748757054.342681   10287 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1748757054.342682   10287 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1748757054.342683   10287 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-06-01 07:50:54.344808: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+=============================================================================
+Starting preprocessing on dir:  AI-TENG-Nano-Sensor-main/TENG-Nano-Sensor-Data/Rehabilitation monitoring
+Unique labels: ['person1_heel' 'person1_toe' 'person1_meta' 'person2_toe' 'person2_meta'
+ 'person2_heel']
+Combined shape: (31140, 3)
+   Time (s)  Voltage (V)         Label
+0  0.001861         -0.4  person1_heel
+1  0.003781          0.6  person1_heel
+2  0.005701         -0.4  person1_heel
+3  0.007621          0.8  person1_heel
+4  0.009541         -0.2  person1_heel
+X shape (samples, window_size): (5634, 500)
+y shape (samples,): (5634,)
+Labels: {np.str_('person2_heel'), np.str_('person1_heel'), np.str_('person2_toe'), np.str_('person1_toe'), np.str_('person2_meta'), np.str_('person1_meta')}
+Train: (3943, 500) Validation: (845, 500) Test: (846, 500)
+=============================================================================
+
+--- Training Random Forest ---
+
+--- Random Forest Validation Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.80      0.97      0.87       140
+person1_meta       1.00      0.94      0.97       141
+ person1_toe       0.73      0.91      0.81       141
+person2_heel       0.99      1.00      1.00       141
+person2_meta       0.86      0.76      0.81       141
+ person2_toe       0.92      0.65      0.76       141
+
+    accuracy                           0.87       845
+   macro avg       0.88      0.87      0.87       845
+weighted avg       0.88      0.87      0.87       845
+
+
+--- Random Forest Test Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.82      0.96      0.89       141
+person1_meta       1.00      0.96      0.98       141
+ person1_toe       0.77      0.94      0.85       141
+person2_heel       1.00      0.99      0.99       141
+person2_meta       0.88      0.82      0.85       141
+ person2_toe       0.88      0.63      0.74       141
+
+    accuracy                           0.88       846
+   macro avg       0.89      0.88      0.88       846
+weighted avg       0.89      0.88      0.88       846
+
+
+--- Training SVM ---
+
+--- SVM Validation Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.63      0.66      0.64       140
+person1_meta       0.50      0.49      0.49       141
+ person1_toe       0.53      0.86      0.66       141
+person2_heel       0.99      1.00      1.00       141
+person2_meta       0.30      0.17      0.22       141
+ person2_toe       0.65      0.51      0.57       141
+
+    accuracy                           0.61       845
+   macro avg       0.60      0.61      0.60       845
+weighted avg       0.60      0.61      0.60       845
+
+
+--- SVM Test Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.61      0.65      0.63       141
+person1_meta       0.42      0.37      0.39       141
+ person1_toe       0.50      0.88      0.64       141
+person2_heel       1.00      0.99      0.99       141
+person2_meta       0.45      0.24      0.31       141
+ person2_toe       0.65      0.51      0.57       141
+
+    accuracy                           0.61       846
+   macro avg       0.60      0.61      0.59       846
+weighted avg       0.60      0.61      0.59       846
+
+
+--- Training KNN ---
+
+--- KNN Validation Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.75      0.96      0.85       140
+person1_meta       0.74      0.18      0.29       141
+ person1_toe       0.49      0.89      0.63       141
+person2_heel       1.00      0.65      0.78       141
+person2_meta       0.38      0.52      0.44       141
+ person2_toe       0.57      0.37      0.45       141
+
+    accuracy                           0.59       845
+   macro avg       0.65      0.59      0.57       845
+weighted avg       0.65      0.59      0.57       845
+
+
+--- KNN Test Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.72      0.94      0.81       141
+person1_meta       0.66      0.22      0.33       141
+ person1_toe       0.48      0.88      0.62       141
+person2_heel       1.00      0.60      0.75       141
+person2_meta       0.41      0.55      0.47       141
+ person2_toe       0.62      0.37      0.46       141
+
+    accuracy                           0.59       846
+   macro avg       0.65      0.59      0.57       846
+weighted avg       0.65      0.59      0.57       846
+
+
+--- Training MLP ---
+
+--- MLP Validation Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.95      0.96      0.95       140
+person1_meta       0.89      0.79      0.84       141
+ person1_toe       0.72      0.77      0.75       141
+person2_heel       0.97      0.96      0.96       141
+person2_meta       0.73      0.68      0.70       141
+ person2_toe       0.59      0.65      0.62       141
+
+    accuracy                           0.80       845
+   macro avg       0.81      0.80      0.80       845
+weighted avg       0.81      0.80      0.80       845
+
+
+--- MLP Test Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.92      0.94      0.93       141
+person1_meta       0.92      0.80      0.86       141
+ person1_toe       0.72      0.87      0.79       141
+person2_heel       0.97      0.92      0.95       141
+person2_meta       0.74      0.72      0.73       141
+ person2_toe       0.65      0.64      0.64       141
+
+    accuracy                           0.81       846
+   macro avg       0.82      0.81      0.81       846
+weighted avg       0.82      0.81      0.81       846
+
+
+--- Training Gradient Boosted Trees ---
+
+--- Gradient Boosted Trees Validation Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.80      0.91      0.85       140
+person1_meta       0.95      0.85      0.90       141
+ person1_toe       0.71      0.73      0.72       141
+person2_heel       0.98      1.00      0.99       141
+person2_meta       0.70      0.66      0.68       141
+ person2_toe       0.86      0.84      0.85       141
+
+    accuracy                           0.83       845
+   macro avg       0.83      0.83      0.83       845
+weighted avg       0.83      0.83      0.83       845
+
+
+--- Gradient Boosted Trees Test Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.82      0.88      0.85       141
+person1_meta       0.95      0.91      0.93       141
+ person1_toe       0.72      0.78      0.75       141
+person2_heel       0.99      0.97      0.98       141
+person2_meta       0.73      0.74      0.73       141
+ person2_toe       0.83      0.74      0.78       141
+
+    accuracy                           0.84       846
+   macro avg       0.84      0.84      0.84       846
+weighted avg       0.84      0.84      0.84       846
+
+=============================================================================
+Starting preprocessing on dir:  AI-TENG-Nano-Sensor-main/TENG-Nano-Sensor-Data/Rehabilitation monitoring
+Unique labels: ['person1_heel' 'person1_toe' 'person1_meta' 'person2_toe' 'person2_meta'
+ 'person2_heel']
+Combined shape: (31140, 3)
+   Time (s)  Voltage (V)         Label
+0  0.001861         -0.4  person1_heel
+1  0.003781          0.6  person1_heel
+2  0.005701         -0.4  person1_heel
+3  0.007621          0.8  person1_heel
+4  0.009541         -0.2  person1_heel
+X shape (samples, window_size): (5634, 500)
+y shape (samples,): (5634,)
+Labels: {np.str_('person2_heel'), np.str_('person1_heel'), np.str_('person2_toe'), np.str_('person1_toe'), np.str_('person2_meta'), np.str_('person1_meta')}
+Train: (3943, 500, 1) Validation: (845, 500, 1) Test: (846, 500, 1)
+=============================================================================
+/home/lukas/ausland/course/digital-signal-processing/ai-teng-nano-sensor/.venv/lib/python3.11/site-packages/keras/src/layers/convolutional/base_conv.py:113: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+I0000 00:00:1748757255.601932   10287 gpu_device.cc:2019] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 7438 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 3080, pci bus id: 0000:01:00.0, compute capability: 8.6
+Epoch 1/50
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1748757256.382262   10496 service.cc:152] XLA service 0x728e1801e200 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+I0000 00:00:1748757256.382275   10496 service.cc:160]   StreamExecutor device (0): NVIDIA GeForce RTX 3080, Compute Capability 8.6
+2025-06-01 07:54:16.397639: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+I0000 00:00:1748757256.481093   10496 cuda_dnn.cc:529] Loaded cuDNN version 90300
+I0000 00:00:1748757257.711913   10496 device_compiler.h:188] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 9ms/step - accuracy: 0.2236 - loss: 1.95582025-06-01 07:54:19.072961: I external/local_xla/xla/stream_executor/cuda/subprocess_compilation.cc:346] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_dot_102', 4 bytes spill stores, 4 bytes spill loads
+
+124/124 ━━━━━━━━━━━━━━━━━━━━ 4s 17ms/step - accuracy: 0.2240 - loss: 1.9537 - val_accuracy: 0.4828 - val_loss: 1.1744
+Epoch 2/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.4647 - loss: 1.1199 - val_accuracy: 0.4994 - val_loss: 0.9639
+Epoch 3/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.5292 - loss: 0.9532 - val_accuracy: 0.5953 - val_loss: 0.8203
+Epoch 4/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.5855 - loss: 0.8357 - val_accuracy: 0.6154 - val_loss: 0.7665
+Epoch 5/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.6126 - loss: 0.7767 - val_accuracy: 0.6367 - val_loss: 0.7385
+Epoch 6/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.6231 - loss: 0.7497 - val_accuracy: 0.6308 - val_loss: 0.7032
+Epoch 7/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.6382 - loss: 0.7167 - val_accuracy: 0.7065 - val_loss: 0.6333
+Epoch 8/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - accuracy: 0.6689 - loss: 0.6725 - val_accuracy: 0.6864 - val_loss: 0.6773
+Epoch 9/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.6795 - loss: 0.6370 - val_accuracy: 0.7337 - val_loss: 0.5620
+Epoch 10/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.7280 - loss: 0.5550 - val_accuracy: 0.7941 - val_loss: 0.5166
+Epoch 11/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.7914 - loss: 0.4901 - val_accuracy: 0.8438 - val_loss: 0.4173
+Epoch 12/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.8079 - loss: 0.4336 - val_accuracy: 0.8911 - val_loss: 0.3269
+Epoch 13/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.8549 - loss: 0.3538 - val_accuracy: 0.8959 - val_loss: 0.2955
+Epoch 14/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.8664 - loss: 0.3202 - val_accuracy: 0.9148 - val_loss: 0.3031
+Epoch 15/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.8951 - loss: 0.2646 - val_accuracy: 0.9325 - val_loss: 0.2283
+Epoch 16/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9022 - loss: 0.2379 - val_accuracy: 0.9314 - val_loss: 0.1818
+Epoch 17/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9229 - loss: 0.2033 - val_accuracy: 0.9515 - val_loss: 0.1849
+Epoch 18/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9337 - loss: 0.1841 - val_accuracy: 0.9538 - val_loss: 0.1639
+Epoch 19/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9429 - loss: 0.1604 - val_accuracy: 0.9089 - val_loss: 0.2268
+Epoch 20/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9285 - loss: 0.1862 - val_accuracy: 0.9527 - val_loss: 0.1812
+Epoch 21/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9465 - loss: 0.1443 - val_accuracy: 0.9136 - val_loss: 0.2320
+Epoch 22/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9586 - loss: 0.1261 - val_accuracy: 0.9645 - val_loss: 0.1300
+Epoch 23/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9576 - loss: 0.1268 - val_accuracy: 0.9574 - val_loss: 0.1609
+Epoch 24/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9585 - loss: 0.1085 - val_accuracy: 0.9669 - val_loss: 0.1112
+Epoch 25/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9557 - loss: 0.1180 - val_accuracy: 0.9467 - val_loss: 0.1785
+Epoch 26/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9603 - loss: 0.1137 - val_accuracy: 0.9657 - val_loss: 0.1048
+Epoch 27/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9578 - loss: 0.1260 - val_accuracy: 0.9550 - val_loss: 0.1412
+Epoch 28/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9718 - loss: 0.0878 - val_accuracy: 0.9680 - val_loss: 0.1002
+Epoch 29/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9734 - loss: 0.0791 - val_accuracy: 0.9562 - val_loss: 0.1294
+Epoch 30/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9778 - loss: 0.0727 - val_accuracy: 0.9491 - val_loss: 0.1519
+Epoch 31/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9652 - loss: 0.0970 - val_accuracy: 0.9598 - val_loss: 0.1338
+Epoch 32/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9767 - loss: 0.0710 - val_accuracy: 0.9680 - val_loss: 0.1003
+Epoch 33/50
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9747 - loss: 0.0661 - val_accuracy: 0.9669 - val_loss: 0.1205
+27/27 ━━━━━━━━━━━━━━━━━━━━ 1s 15ms/step
+
+--- Training CNN ---
+Epoch 1/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9740 - loss: 0.0783 - val_accuracy: 0.9633 - val_loss: 0.1371
+Epoch 2/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9800 - loss: 0.0643 - val_accuracy: 0.9657 - val_loss: 0.1281
+Epoch 3/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9702 - loss: 0.0922 - val_accuracy: 0.9503 - val_loss: 0.1384
+Epoch 4/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9750 - loss: 0.0660 - val_accuracy: 0.9704 - val_loss: 0.1065
+Epoch 5/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9748 - loss: 0.0725 - val_accuracy: 0.9704 - val_loss: 0.1035
+Epoch 6/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9809 - loss: 0.0536 - val_accuracy: 0.9751 - val_loss: 0.1007
+Epoch 7/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9785 - loss: 0.0638 - val_accuracy: 0.9716 - val_loss: 0.0969
+Epoch 8/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9734 - loss: 0.0701 - val_accuracy: 0.9740 - val_loss: 0.0835
+Epoch 9/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9827 - loss: 0.0553 - val_accuracy: 0.9645 - val_loss: 0.1317
+Epoch 10/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9828 - loss: 0.0500 - val_accuracy: 0.9728 - val_loss: 0.0867
+Epoch 11/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9805 - loss: 0.0599 - val_accuracy: 0.9740 - val_loss: 0.1049
+Epoch 12/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9675 - loss: 0.0813 - val_accuracy: 0.9775 - val_loss: 0.0897
+Epoch 13/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9858 - loss: 0.0438 - val_accuracy: 0.9598 - val_loss: 0.1980
+Epoch 14/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9829 - loss: 0.0510 - val_accuracy: 0.9669 - val_loss: 0.1301
+Epoch 15/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9777 - loss: 0.0598 - val_accuracy: 0.9680 - val_loss: 0.1325
+Epoch 16/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9857 - loss: 0.0409 - val_accuracy: 0.9728 - val_loss: 0.0804
+Epoch 17/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9903 - loss: 0.0334 - val_accuracy: 0.9740 - val_loss: 0.0909
+Epoch 18/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9874 - loss: 0.0352 - val_accuracy: 0.9787 - val_loss: 0.1303
+Epoch 19/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9865 - loss: 0.0446 - val_accuracy: 0.9716 - val_loss: 0.0982
+Epoch 20/20
+124/124 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - accuracy: 0.9904 - loss: 0.0277 - val_accuracy: 0.9787 - val_loss: 0.0901
+27/27 ━━━━━━━━━━━━━━━━━━━━ 0s 7ms/step
+27/27 ━━━━━━━━━━━━━━━━━━━━ 0s 760us/step
+
+--- CNN Validation Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.99      0.99      0.99       140
+person1_meta       0.99      0.94      0.96       141
+ person1_toe       0.96      0.96      0.96       141
+person2_heel       1.00      1.00      1.00       141
+person2_meta       0.96      1.00      0.98       141
+ person2_toe       0.97      0.99      0.98       141
+
+    accuracy                           0.98       845
+   macro avg       0.98      0.98      0.98       845
+weighted avg       0.98      0.98      0.98       845
+
+
+--- CNN Test Classification Report ---
+              precision    recall  f1-score   support
+
+person1_heel       0.98      0.98      0.98       141
+person1_meta       1.00      0.93      0.96       141
+ person1_toe       0.96      0.96      0.96       141
+person2_heel       0.99      0.99      0.99       141
+person2_meta       0.95      0.99      0.97       141
+ person2_toe       0.97      1.00      0.99       141
+
+    accuracy                           0.98       846
+   macro avg       0.98      0.98      0.98       846
+weighted avg       0.98      0.98      0.98       846
+
+
+Process finished with exit code 0
+
