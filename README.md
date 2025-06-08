@@ -26,17 +26,10 @@ python main.py
 
 ### Confusion Matrices
 
-<p align="center">
-  <img src="plots/knn.png" width="45%" />
-  <img src="plots/mlp.png" width="45%" />
-</p>
+![Image](plots/knn_cm.png)
+![Image](plots/mlp_cm.png)
+![Image](plots/random_forest_cm.png)
+![Image](plots/gradient_boosted_trees_cm.png)
+![Image](plots/svm_cm.png)
+![Image](plots/cnn_cm.png)
 
-<p align="center">
-  <img src="plots/random_forest.png" width="45%" />
-  <img src="plots/gradient_boosted_trees.png" width="45%" />
-</p>
-
-<p align="center">
-  <img src="plots/svm.png" width="45%" />
-  <img src="plots/cnn.png" width="45%" />
-</p>
