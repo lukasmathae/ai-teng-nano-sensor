@@ -59,7 +59,12 @@ def sliding_window(combined_df):
     #stride = 12
     #window_size = 570
     #stride = 12
-    window_size = 500
+
+    #accuracy = 0.94
+    #window_size = 500
+    #stride = 5
+
+    window_size = 520
     stride = 5
     X = []
     y = []
