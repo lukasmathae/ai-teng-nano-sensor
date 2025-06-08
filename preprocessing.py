@@ -64,8 +64,13 @@ def sliding_window(combined_df):
     #window_size = 500
     #stride = 5
 
-    window_size = 520
-    stride = 5
+    #window_size = 520
+    #stride = 5
+
+    window_size = 500
+    overlap = 0.9
+    stride = int(window_size * (1 - overlap))
+
     X = []
     y = []
 
